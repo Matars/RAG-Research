@@ -1,0 +1,2 @@
+assistantid_gpt4=asst_ScGfhT0u4MomilSUCTuKnRWF
+assistantid_gpt3=asst_DsTDGQ1pD9gYm9Lehy9VSgu4

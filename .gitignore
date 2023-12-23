@@ -2,3 +2,9 @@
 __pycache__/
 *.py[cod]
 *.env
+
+# ds store files
+.DS_Store
+
+# dodcuments folder
+documents/

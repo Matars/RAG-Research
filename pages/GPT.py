@@ -1,9 +1,28 @@
 import streamlit as st
-from responses import OpenAiAssistantResponse
-
+from responses import OpenAiAssistantResponse, update_openai_api
 
 st.title("GPT quizz creator")
 api_key = st.sidebar.text_input("OpenAI API Key", value="", type="password", placeholder="Enter your API key")
+set_api_key = st.sidebar.button("Set API Key")
+
+if set_api_key:
+    update_openai_api(api_key)
+
+style_of_response = st.sidebar.radio(
+    "Style of Response",
+    ("Open ended questions", "Multiple choice questions", "Combination of open ended and multiple choice questions"),
+)
+
+quizz_length = st.sidebar.radio(
+    "Length of Response",
+    ("Short", "Medium", "Long"),
+)
+
+st.sidebar.info(
+    """
+    Note: LLMs are unpredictable and may not always follow the rules
+    """
+)
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -13,9 +32,10 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+    
 
 # React to user input
-if prompt := st.chat_input("..."):
+if prompt := st.chat_input("Islamic history"):
     # Display user message in chat message container
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history
@@ -23,7 +43,7 @@ if prompt := st.chat_input("..."):
 
     # Get assistant response
     with st.spinner("consructing quizz..."):
-        response = OpenAiAssistantResponse(prompt)
+        response = OpenAiAssistantResponse(prompt, style_of_response, quizz_length)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)

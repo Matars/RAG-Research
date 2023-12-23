@@ -28,32 +28,40 @@ def Mistral7x8BResponse(prompt):
         return content
 
 
-def OpenAiAssistantResponse(prompt):
+def OpenAiAssistantResponse(prompt: str, style_of_response: str, quizz_length: int):
 
-    assistantID = "asst_hBggvgQ75jVwE37nchjTVecf"
+    assistantID = "asst_ScGfhT0u4MomilSUCTuKnRWF"
 
     thread = client.beta.threads.create()
 
     message = client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
-        content=prompt
+        content=prompt,
     )
 
     run = client.beta.threads.runs.create(
         thread_id=thread.id,
         assistant_id=assistantID,
-        instructions="You are a quizz creator that creates quizzes form the provided text ONLY. If the answer cannot be found in the articles, write 'I could not find an answer.'"
+        instructions="""
+        You are a quizz creator that creates quizzes form the provided text ONLY. 
+        The questions should be in the style of {style_of_response}.
+        If multiple choice, the number of choices should be 4 marked a) b) c) d).
+        The quizz length should be {quiz_length}.
+        You provide questions and only questions, never bread text or paragraphs that are not questions.
+        Do NOT provide the answers to the questions.
+
+        If the answer cannot be found in the articles, write 'I could not find an answer from the provded documents.'
+        If the question is not about creating a quizz, write 'I cannot create a quizz from this questiosn.'
+        """,
     )
 
     while run.status != "completed":
-        print(run.status)
         run = client.beta.threads.runs.retrieve(
             thread_id=thread.id,
             run_id=run.id
         )
         sleep(2)
-    print(run.status)
 
     # retrieve and format mesasge
     messages = client.beta.threads.messages.list(thread_id=thread.id)
@@ -64,6 +72,7 @@ def OpenAiAssistantResponse(prompt):
     annotations = message_content.annotations
     citations = []
 
+    # this is copied from the openai docs
     # Iterate over the annotations and add footnotes
     for index, annotation in enumerate(annotations):
         # Replace the text with a footnote
@@ -85,6 +94,9 @@ def OpenAiAssistantResponse(prompt):
     message_content.value += '\n' + '\n'.join(citations)
     return message_content.value
 
+def update_openai_api(api_key):
+    # print("updating api key", api_key)
+    client.api_key = api_key
 
 
 if __name__ == "__main__":

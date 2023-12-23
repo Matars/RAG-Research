@@ -13,18 +13,10 @@ st.markdown(
     Select a model from the sidebar to get started. 
 
     ## GPT
-    - [x] RAG system
-    - [x] Quizz creator
-
-    **TODO:**
-    - [ ] Multible documents
-    - [ ] 5-10 shot learning
+    - RAG Quizz creator
 
     ## Mistral
-    Mistral interface
+    - Vanilla Mistral interface
 
-    **TODO:**
-    - [ ] RAG support
-    - [ ] 5-10 shot learning
     """
 )

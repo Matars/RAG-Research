@@ -2,7 +2,7 @@ import streamlit as st
 from responses import OpenAiAssistantResponse, update_openai_api
 
 st.title("GPT quizz creator")
-api_key = st.sidebar.text_input("OpenAI API Key", value="", type="password", placeholder="Enter your API key")
+api_key = st.sidebar.text_input("OpenAI API Key", value="", type="password", placeholder="sk-...")
 set_api_key = st.sidebar.button("Set API Key")
 
 if set_api_key:

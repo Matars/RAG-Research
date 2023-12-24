@@ -9,7 +9,11 @@ load_dotenv()
 client = OpenAI()
 
 
-def Mistral7x8BResponse(prompt):
+def Mistral7x8BResponse(prompt, messages):
+    """
+    This is expiremental and not used in the demo
+    
+    """
     s = requests.Session()
 
     api_base = os.getenv("ANYSCALE_BASE_URL")
@@ -17,8 +21,7 @@ def Mistral7x8BResponse(prompt):
     url = f"{api_base}/chat/completions"
     body = {
         "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
-        "messages": [{"role": "system", "content": "You are a helpful assistant."},
-                     {"role": "user", "content": f"{prompt}."}],
+        "messages": messages,
         "temperature": 0.7
     }
 

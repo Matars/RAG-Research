@@ -5,7 +5,7 @@
 ```bash
 git clone https://github.com/Matars/RAG-Research
 pip install -r requirments
-streamlit run Home.py
+streamlit run GPT.py
 ```
 
 ## Description
@@ -22,5 +22,4 @@ This project is a Python-based application designed to create quizzes. It uses m
 - [`createAssistant.ipynb`](createAssistant.ipynb): A Jupyter notebook used to create an OpenAI assistant and manage files. The generated assistant ID is used within the application.
 - [`responses.py`](responses.py): Contains all the API calls to different models.
 - [`assistant_ids.txt`](assistant_ids.txt): Holds the assistant IDs that are needed to use the assistant API.
-- [`pages`](pages/): A directory containing different chatbot interfaces. Each interface is defined in a separate Python script, such as [`Mistral8x7B.py`](pages/Mistral8x7B.py).
 - [`.env.example`](.env.example): An example environment file. Fill in your own values and rename this to `.env` to use it.

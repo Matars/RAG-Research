@@ -12,8 +12,6 @@ streamlit run GPT.py
 
 This project provides an interface3 for a quizz creator Assisntant
 
-And an interface for Mistral testing
-
 ## File descriptions
 
 This project is a Python-based application designed to create quizzes. It uses models from OpenAI to generate questions. The project structure is as follows:

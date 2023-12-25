@@ -1,7 +1,7 @@
 import streamlit as st
 from responses import OpenAiAssistantResponse, update_openai_api
 
-st.title("GPT quizz creator")
+st.title("GPT quiz creator")
 api_key = st.sidebar.text_input("OpenAI API Key", value="", type="password", placeholder="sk-...")
 set_api_key = st.sidebar.button("Set API Key")
 
@@ -35,7 +35,7 @@ for message in st.session_state.messages_openai:
     
 
 # React to user input
-if prompt := st.chat_input("Islamic history"):
+if prompt := st.chat_input("Create a quizz about..."):
     # Display user message in chat message container
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history

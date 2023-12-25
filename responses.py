@@ -56,6 +56,11 @@ def OpenAiAssistantResponse(prompt: str, style_of_response: str, quizz_length: i
 
         If the answer cannot be found in the articles, write 'I could not find an answer from the provded documents.'
         If the question is not about creating a quizz, write 'I cannot create a quizz from this questiosn.'
+        Try your best to always create a quizz.
+        Try to make the quiz informative and interesting, something that will teach you if you answer it.
+        Respond with onlt the quiz
+
+        
         """,
     )
 

@@ -59,8 +59,6 @@ def OpenAiAssistantResponse(prompt: str, style_of_response: str, quizz_length: i
         Try your best to always create a quizz.
         Try to make the quiz informative and interesting, something that will teach you if you answer it.
         Respond with onlt the quiz
-
-        
         """,
     )
 
